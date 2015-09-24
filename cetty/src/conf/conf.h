@@ -16,7 +16,7 @@
 
 #define DEFAULT_REQQUEUE 1000
 
-#define DEFAULT_PROPERITES /conf/cetty.conf
+#define DEFAULT_PROPERITES "./conf/cetty.conf"
 
 using namespace std;
 class CettyConf{                        
@@ -38,14 +38,14 @@ class CettyConf{
 		}
 		void readCettyConf(){
 			//从配置文件中读取数据
-			log( DEBUG, "尝试读取配置文件"+cettyConf);
+			log( DEBUG, "try read cetty conf ["+cettyConf + "]");
 			ifstream in;
 			in.open(getCettyConf().c_str());
 			if(!in){
-				log( DEBUG, "配置文件打开失败");
+				log( DEBUG, "conf open failed");
 				exit(-1);
 			}
-			log( DEBUG, "配置文件打开正常");
+			log( DEBUG, "conf open success");
 			string temp;
 			while(getline(in,temp)){
 				if(temp.find('#',0)==0){
@@ -66,4 +66,5 @@ class CettyConf{
 
 void readConfFile();
 void showGlobalReg();
+string getReg(const char *);
 #endif
